@@ -31,7 +31,19 @@ class _MemosPageState extends State<MemosPage> {
               backgroundColor: Colors.lightBlueAccent,
               onPressed: (() {
                 showModalBottomSheet(
-                    context: context, builder: buildButtomSheet);
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                      ),
+                    ),
+                    context: context,
+                    builder: (context) => SingleChildScrollView(
+                            child: Container(
+                          padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom),
+                          child: AddTaskScreen(),
+                        )));
               })),
           backgroundColor: Colors.lightBlueAccent,
           body: Column(
