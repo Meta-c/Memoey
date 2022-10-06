@@ -3,6 +3,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'tasks_tile.dart';
+import 'tasks_list.dart';
+import 'bottom_sheet.dart';
 
 class MemosPage extends StatefulWidget {
   MemosPage({Key? key}) : super(key: key);
@@ -12,27 +15,27 @@ class MemosPage extends StatefulWidget {
 }
 
 class _MemosPageState extends State<MemosPage> {
+  bool checkMark = false;
   int tasksNum = 0;
-  List<Widget> tasksStorage = [
-    Row(children: [
-      Text(
-        'buy milk',
-        style: TextStyle(color: Colors.black),
-      )
-    ]),
-    Row(children: [Text('buy bread', style: TextStyle(color: Colors.black))]),
-    Row(children: [Text('buy slave', style: TextStyle(color: Colors.black))]),
-  ];
+
+  // Widget buildButtomSheet(BuildContext context) {
+  //   return Container();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              backgroundColor: Colors.lightBlueAccent,
+              onPressed: (() {
+                showModalBottomSheet(
+                    context: context, builder: buildButtomSheet);
+              })),
           backgroundColor: Colors.lightBlueAccent,
           body: Column(
               // ignore: prefer_const_literals_to_create_immutables
-              // mainAxisAlignment: MainAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
@@ -87,11 +90,7 @@ class _MemosPageState extends State<MemosPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Flexible(
-                          child: ListView(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 35),
-                            children: tasksStorage,
-                          ),
+                          child: TasksList(),
                         )
                       ],
                     ),
